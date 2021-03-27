@@ -1,0 +1,28 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/button";
+@import "components/composition";
+@import "components/custom-bootstrap";
+@import "components/order-card";
+@import "components/modal";
+
+@import "layout/header";
+@import "layout/grid";
+@import "layout/form";
+@import "layout/footer";
+@import "layout/sidenav";
+
+@import "pages/home";
+@import "pages/covid";
+@import "pages/thankyou";
+@import "pages/book";
+@import "pages/markdown";
+@import "pages/setup";

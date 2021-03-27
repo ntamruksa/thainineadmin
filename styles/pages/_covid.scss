@@ -1,0 +1,21 @@
+.section-covid {
+  background-color: $color-grey-light-1;
+  padding: 10rem 0;
+  @include respond(phone) {
+    padding: 5rem 0;
+  }
+  &__form {
+    width: 50%;
+    padding: 6rem;
+    @include respond(phone) {
+      padding: 3rem;
+    }
+    @include respond(tab-land) {
+        width: 65%;
+    }
+
+    @include respond(tab-port) {
+        width: 100%;
+    }
+  }
+}

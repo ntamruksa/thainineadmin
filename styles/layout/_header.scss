@@ -1,0 +1,66 @@
+.site-nav {
+  background: #f3f7f8 none repeat scroll 0 0 !important;
+  padding: 0 2rem;
+  z-index: 9;
+}
+.site-nav .nav-link {
+  font-weight: 600;
+  padding: 2.8rem 0 !important;
+  text-align: center;
+  margin: 0 0 0 3rem;
+}
+.site-nav--logo {
+  width: 8rem;
+  position: relative;
+  vertical-align: text-top;
+}
+.dropdown-cart .dropdown-menu {
+  padding-top: 0px !important;
+}
+.nav-osahan-pic {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 3px #ccc;
+  position: relative;
+  margin: -8px 5px -6px 0;
+  vertical-align: text-top;
+}
+.dropdown-cart-top {
+  border-top: 2px solid #ff3008;
+  min-width: 340px;
+}
+.dropdown-cart-top-header {
+  min-height: 107px;
+}
+.dropdown-cart-top-header .img-fluid {
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  float: left;
+  height: 59px;
+  padding: 3px;
+  width: 59px;
+}
+.dropdown-cart-top-header p.text-secondary {
+  font-size: 11px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.dropdown-cart-top-header h6 {
+  font-size: 14px;
+}
+.food-item {
+  border: 1px solid;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 6px;
+  height: 13px;
+  line-height: 12px;
+  text-align: center;
+  width: 13px;
+}
+.dropdown-cart-top-body .food-item {
+  float: left;
+  margin: 4px 10px 0 0;
+  padding-left: 1px;
+}

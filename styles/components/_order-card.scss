@@ -1,0 +1,21 @@
+.touch-dot {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: orangered;
+  display: inline-block;
+}
+
+.touch-dot__nav {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: orangered;
+  display: inline-block;
+  top: 1rem;
+  position: absolute;
+}
+
+.order-card {
+  color: $color-white;
+}

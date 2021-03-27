@@ -1,0 +1,131 @@
+.section-aboutus {
+  background-color: $color-grey-light-1;
+  padding: 5rem 0;
+  // margin-top: 60vh;
+  @include respond(phone) {
+    // margin-top: 15vh;
+    padding: 2rem 0;
+  }
+  @include respond(tab-port) {
+    // margin-top: 20vh;
+    padding: 2rem 0;
+  }
+  @include respond(tab-land) {
+    // margin-top: 30vh;
+    padding: 2rem 0;
+  }
+}
+.section-hero {
+  height: 30vh;
+  @include respond(phone) {
+    height: 13vh;
+    clip-path: none;
+    -webkit-clip-path: none;
+  }
+  // background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.3), rgba($color-primary-dark, 0.4));
+  background-image: url('/baiyok-banner.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top;
+  position: relative;
+  // border-bottom: 8px solid $color-grey-light-4;
+  // &__logo-box {
+  //   position: absolute;
+  //   top: 0rem;
+  //   left: 50%;
+  //   transform: translate(-50%, 0);
+  // }
+
+  // &__logo {
+  //   height: 25rem;
+  // }
+
+  // &__text-box {
+  //   position: absolute;
+  //   top: 60%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   text-align: center;
+  // }
+
+  // &__menu {
+  //   position: absolute;
+  //   top: 91%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   text-align: center;
+  // }
+}
+
+.section-meals {
+  background-image: url('/baiyok-meang.jpg');
+  position: absolute;
+  top: 25vh;
+  @include respond(phone) {
+    top: 15rem;
+    clip-path: none;
+    -webkit-clip-path: none;
+    overflow: hidden;
+  }
+  @include respond(tab-port) {
+    top: 15rem;
+  }
+  @include respond(tab-land) {
+    top: 20rem;
+  }
+  @include respond(big-desktop) {
+    top: 5rem;
+    background-size: cover;
+  }
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .85;
+  overflow: hidden;
+  &__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
+
+.section-carousel {
+  opacity: .85;
+}
+
+.section-contactus {
+    background-color: $color-grey-dark-3;
+    padding: 3rem;
+    font-size: 1.4rem;
+    color: $color-grey-dark;
+    text-align: center;
+    &__title {
+      padding-top: 2rem;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+    }
+    &__details {
+      padding: 2rem;
+    }
+    &__box {
+      &:not(:last-child) {
+        border-right: 1px solid $color-grey-dark;
+        @include respond(phone) {
+          border-bottom: 1px solid $color-grey-dark;
+          border-right: none;
+        }
+        @include respond(tab-port) {
+          border-bottom: 1px solid $color-grey-dark;
+          border-right: none;
+        }
+      }
+    }
+}
+
+.section-main {
+  padding-left: 100px;
+}

@@ -1,0 +1,26 @@
+.setup-card {
+  padding: 3rem;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: uppercase;
+  width: 90%;
+  background-color: $color-white;
+  box-shadow: 0 1.5rem 2rem rgba($color: $color-black, $alpha: .1);
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: all .2s;
+  &:hover {
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black,.2);
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+  }
+}

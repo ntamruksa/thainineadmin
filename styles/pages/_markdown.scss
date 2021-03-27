@@ -1,0 +1,10 @@
+.container.markdown {
+  padding: 8rem;
+  li {
+    font-size: 1.3rem;
+    margin-left: 2rem;
+  }
+  @include respond(phone) {
+    padding: 4rem;
+  }
+}

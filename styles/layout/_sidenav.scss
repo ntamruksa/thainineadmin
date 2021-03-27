@@ -1,0 +1,10 @@
+.sidenav-item {
+  height: 8rem;
+  &__icon {
+    @include center-thing;
+  }
+  &__selected {
+    color: $color-primary;
+    // transform: scale(1.5, 1.5);
+  }
+}

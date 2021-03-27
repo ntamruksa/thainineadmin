@@ -1,0 +1,17 @@
+.form-container {
+  max-width: $form-width;
+  margin: 0 auto;
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+  }
+  @include clearfix;
+}
+
+.form-check-input {
+    width: 2rem;
+    height: 2rem;
+}
+
+.form-check-label {
+  padding: 0 2rem;
+}
