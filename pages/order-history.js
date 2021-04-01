@@ -15,7 +15,7 @@ const OrderHistory = ({}) => {
     () => api.getOrders('', idTokenQuery.data),
     {
       retry: 1,
-      enabled: !!idTokenQuery.data,
+      enabled: idTokenQuery.data !== undefined,
     }
   )
 

@@ -17,7 +17,7 @@ function Setup() {
     () => api.getBusinessHours(idTokenQuery.data),
     {
       retry: 1,
-      enabled: !!idTokenQuery.data,
+      enabled: idTokenQuery.data !== undefined,
     }
   )
 

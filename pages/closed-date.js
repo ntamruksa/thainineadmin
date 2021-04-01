@@ -35,7 +35,7 @@ const Dates = () => {
     () => api.getDateConfigs(idTokenQuery.data),
     {
       retry: 1,
-      enabled: !!idTokenQuery.data,
+      enabled: idTokenQuery.data !== undefined,
     }
   )
   const [date, setDate] = useState(moment().format('DD-MM-yyyy'))
