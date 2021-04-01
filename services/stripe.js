@@ -1,1 +1,1 @@
-module.exports = require('stripe')(process.env.TRIPE_SECRET_KEY);
+module.exports = require('stripe')(process.env.STRIPE_SECRET_KEY);
