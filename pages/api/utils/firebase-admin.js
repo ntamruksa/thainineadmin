@@ -16,7 +16,7 @@ const getFirebaseAdmin = async () => {
     return firebaseTenant.DEFAULT
   } else {
     firebaseTenant.DEFAULT = admin.initializeApp({
-      credential: admin.credential.cert(JSON.parse(serviceAccount))
+      credential: admin.credential.cert(serviceAccount)
       // databaseURL: tenantConfig.firebase.firebaseConfig.databaseURL
     })
     if (firebaseTenant.DEFAULT) {
