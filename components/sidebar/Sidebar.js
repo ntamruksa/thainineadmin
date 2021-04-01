@@ -66,15 +66,6 @@ function Sidebar(props) {
   const classes = useStyles()
   const [mobileOpen, setMobileOpen] = useState(false)
   const { data } = api.untouchedOrdersQuery()
-  const [userLoggedIn, setUserLoggedIn] = useState(false)
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
-
-  useEffect(() => {
-    setUserLoggedIn(isLoggedIn)
-    console.log('pathname', router.pathname)
-  }, [])
 
   const drawer = (
     <div>

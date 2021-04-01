@@ -1,11 +1,18 @@
 const {
   findNotDeletedAndNotDisabled,
 } = require('../../../services/db')
-// const { getFirebaseAdmin } = require('./firebase-admin')
 const admin = require('firebase-admin')
+const serviceAccount = require('../../../services/baiyok-firebase-admin.json')
 
 export async function isUserAdmin(authorization, db) {
-  // const firebaseAdmin = await getFirebaseAdmin()
+  serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY
+  try {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    })
+  } catch (e) {
+    console.warn(`Issue on firebase admin init: ${e.message}`)
+  }
   const decodedToken = await admin.auth().verifyIdToken(authorization)
   const user = await db.collection('users').findOne(
     findNotDeletedAndNotDisabled({
