@@ -33,7 +33,14 @@ const OrderHistory = ({}) => {
           <>
             <div className='mb-4'>Orders History</div>
             {orders.length > 0 ? (
-              orders.map((order) => <OrderCard key={order._id} order={order} idTokenQuery={idTokenQuery}/>)
+              orders.map((order) => (
+                <OrderCard
+                  key={order._id}
+                  order={order}
+                  idTokenQuery={idTokenQuery}
+                  showStatus={true}
+                />
+              ))
             ) : (
               <h1>No order today.</h1>
             )}

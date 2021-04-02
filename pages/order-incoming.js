@@ -23,6 +23,7 @@ const OrderIncoming = () => {
     {
       retry: 1,
       enabled: idTokenQuery.data !== undefined,
+      refetchInterval: 60000,
     }
   )
 

@@ -121,9 +121,9 @@ function untouchedOrdersQuery() {
   const untouchQuery = useQuery('getUntouchedCount', () => untouchedOrders(), {
     refetchInterval: 60000,
   })
-  useQuery(['ordersQuery', 'open'], () => getOrders('open'), {
-    enabled: untouchQuery.data?.count > 0,
-  })
+  // useQuery(['ordersQuery', 'open'], () => getOrders('open'), {
+  //   enabled: untouchQuery.data?.count > 0,
+  // })
   return untouchQuery
 }
 
