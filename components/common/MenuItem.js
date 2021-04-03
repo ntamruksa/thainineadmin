@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useQuery, useQueryClient, useMutation } from 'react-query'
-import { Badge, Button, Media, Spinner } from 'react-bootstrap'
+import { Badge, Button, Media, Spinner, Col } from 'react-bootstrap'
 import PropTypes from 'prop-types'
 // import { useRouter } from 'next/router'
 import api from '../../services/API'
 
 const MenuItem = ({ item = null, idTokenQuery }) => {
-
   const [loading, setLoading] = useState(false)
   const queryClient = useQueryClient()
   const { mutate: switchItem } = useMutation(
-    (available) => api.switchItem(item._id, available, idTokenQuery.data),
+    (req) =>
+      api.switchItem(item._id, req.available, req.reset, idTokenQuery.data),
     {
       onMutate: () => {
         setLoading(true)
@@ -21,7 +21,7 @@ const MenuItem = ({ item = null, idTokenQuery }) => {
       },
       onError: () => {
         setLoading(false)
-      }
+      },
     }
   )
 
@@ -33,19 +33,28 @@ const MenuItem = ({ item = null, idTokenQuery }) => {
           {loading ? (
             <Spinner animation='border' variant='primary' className='mr-2' />
           ) : item.available ? (
-            <Button
-              className='btn-medium ml-2'
-              variant='outline-success'
-              disabled={!idTokenQuery.data}
-              onClick={() => switchItem(false)}>
-              ${(item.priceInCents / 100).toFixed(2)}
-            </Button>
+            <Col>
+              <Button
+                className='btn-medium ml-2'
+                variant='outline-success'
+                disabled={!idTokenQuery.data}
+                onClick={() => switchItem({ available: false, reset: false })}>
+                Set Sold Out
+              </Button>
+              <Button
+                className='btn-medium ml-2'
+                variant='outline-success'
+                disabled={!idTokenQuery.data}
+                onClick={() => switchItem({ available: false, reset: true })}>
+                Set Sold Out Today
+              </Button>
+            </Col>
           ) : (
             <Button
               variant='outline-danger'
               className='btn-medium text-uppercase ml-2'
               disabled={!idTokenQuery.data}
-              onClick={() => switchItem(true)}>
+              onClick={() => switchItem({ available: true, reset: false })}>
               Sold Out
             </Button>
           )}

@@ -109,10 +109,10 @@ const delayOrder = (orderId, delayMins, idToken) => {
   )
 }
 
-const switchItem = (itemId, available, idToken) => {
+const switchItem = (itemId, available, reset, idToken) => {
   const headers = getHeader(idToken)
   return client.get(
-    `/api/availableItem?itemId=${itemId}&available=${available}`,
+    `/api/availableItem?itemId=${itemId}&available=${available}&reset=${reset}`,
     { headers }
   )
 }
