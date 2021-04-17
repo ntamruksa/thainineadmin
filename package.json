@@ -17,6 +17,8 @@
     "@mdx-js/loader": "^1.6.18",
     "@next/mdx": "^9.5.3",
     "@sendgrid/mail": "^7.4.0",
+    "@sentry/react": "^6.2.5",
+    "@sentry/tracing": "^6.2.5",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.20.0",

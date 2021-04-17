@@ -10,13 +10,14 @@ function Setup() {
   const AuthUser = useAuthUser()
   const idTokenQuery = useQuery(['idToken'], () => AuthUser.getIdToken(), {
     enabled: !!AuthUser.id,
+    cacheTime: 5 * 60 * 1000,
   })
 
   const { data: businessHours, isLoading, isError, isIdle, error } = useQuery(
     ['businessHours'],
     () => api.getBusinessHours(idTokenQuery.data),
     {
-      retry: 1,
+      retry: 10,
       enabled: idTokenQuery.data !== undefined,
     }
   )

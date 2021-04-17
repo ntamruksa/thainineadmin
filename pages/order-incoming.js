@@ -16,12 +16,13 @@ const OrderIncoming = () => {
 
   const idTokenQuery = useQuery(['idToken'], () => AuthUser.getIdToken(), {
     enabled: !!AuthUser.id,
+    cacheTime: 5 * 60 * 1000,
   })
   const { data: orders, isLoading, isError, isIdle, error } = useQuery(
     ['ordersQuery', 'open'],
     () => api.getOrders('open', idTokenQuery.data),
     {
-      retry: 1,
+      retry: 10,
       enabled: idTokenQuery.data !== undefined,
       refetchInterval: 60000,
     }
@@ -50,7 +51,13 @@ const OrderIncoming = () => {
           <>
             <div className='mb-4'>New Orders</div>
             {orders.length > 0 ? (
-              orders.map((order) => <OrderCard key={order._id} order={order} idTokenQuery={idTokenQuery}/>)
+              orders.map((order) => (
+                <OrderCard
+                  key={order._id}
+                  order={order}
+                  idTokenQuery={idTokenQuery}
+                />
+              ))
             ) : (
               <h1>No new order.</h1>
             )}

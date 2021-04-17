@@ -28,13 +28,14 @@ const Dates = () => {
   const AuthUser = useAuthUser()
   const idTokenQuery = useQuery(['idToken'], () => AuthUser.getIdToken(), {
     enabled: !!AuthUser.id,
+    cacheTime: 5 * 60 * 1000,
   })
 
   const { data: dates, isLoading, isError, isIdle, error } = useQuery(
     ['dateConfigs'],
     () => api.getDateConfigs(idTokenQuery.data),
     {
-      retry: 1,
+      retry: 10,
       enabled: idTokenQuery.data !== undefined,
     }
   )
@@ -98,7 +99,11 @@ const Dates = () => {
                 <div className='bg-white rounded border shadow-sm mb-4'>
                   {dates &&
                     dates.map((date) => (
-                      <ClosedDate key={date._id} date={date} idTokenQuery={idTokenQuery}/>
+                      <ClosedDate
+                        key={date._id}
+                        date={date}
+                        idTokenQuery={idTokenQuery}
+                      />
                     ))}
                 </div>
               </Col>

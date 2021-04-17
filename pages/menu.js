@@ -18,6 +18,7 @@ const Menu = ({}) => {
   const AuthUser = useAuthUser()
   const idTokenQuery = useQuery(['idToken'], () => AuthUser.getIdToken(), {
     enabled: !!AuthUser.id,
+    cacheTime: 5 * 60 * 1000,
   })
   const [showModal, setShowModal] = useState(false)
   const { data: menuitems, isLoading, isError } = api.menuItemQuery()
