@@ -168,6 +168,15 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
                   order.items.map((item, idx) => (
                     <OrderItem key={idx} item={item} />
                   ))}
+                {order && !!order.discountInCents && (
+                  <OrderItem
+                    item={{
+                      quantity: 1,
+                      totalPrice: order.discountInCents,
+                      item: { image: '', title: 'Cash Discount 10%' },
+                    }}
+                  />
+                )}
                 {order.option === 'delivery' && (
                   <OrderItem
                     item={{

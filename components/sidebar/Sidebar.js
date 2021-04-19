@@ -20,6 +20,9 @@ import { isLoggedIn, logout } from '../../services/auth'
 import classNames from 'classnames'
 import { ControlPointDuplicateTwoTone } from '@material-ui/icons'
 import api from '../../services/API'
+import useSound from 'use-sound'
+import { useQuery } from 'react-query'
+
 import {
   useAuthUser,
   withAuthUser,
@@ -65,7 +68,20 @@ function Sidebar(props) {
   const router = useRouter()
   const classes = useStyles()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { data } = api.untouchedOrdersQuery()
+  const { data } = useQuery(
+    ['getUntouchedCount'],
+    () => api.untouchedOrders(),
+    {
+      retry: 10,
+      refetchInterval: 10000,
+      onSuccess: () => {
+        if (data && data.count > 0) {
+          playIncoming()
+        }
+      },
+    }
+  )
+  const [playIncoming] = useSound('/sounds/alert.mp3', { volume: 1 })
 
   const drawer = (
     <div>

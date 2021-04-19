@@ -28,14 +28,14 @@ const OrderIncoming = () => {
     }
   )
 
-  const { data } = api.untouchedOrdersQuery()
-  const [playIncoming] = useSound('/sounds/alert.mp3', { volume: 0.25 })
-  useEffect(() => {
-    console.log('data has change')
-    if (data && data.count > 0) {
-      playIncoming()
-    }
-  }, [data])
+  // const { data } = api.untouchedOrdersQuery()
+  // const [playIncoming] = useSound('/sounds/alert.mp3', { volume: 0.25 })
+  // useEffect(() => {
+  //   console.log('data has change')
+  //   if (data && data.count > 0) {
+  //     playIncoming()
+  //   }
+  // }, [data])
 
   return (
     <section className='section section-main'>

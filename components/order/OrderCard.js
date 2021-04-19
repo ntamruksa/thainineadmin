@@ -48,6 +48,13 @@ const OrderCard = ({ order = null, showStatus = false, idTokenQuery }) => {
                 <h2 className='py-2 order-card'>{order && order.pickupName}</h2>
                 <h3 className='order-card'>#{order.orderNumber}</h3>
               </Col>
+              <Col>
+                {order.paymentMethodId === 'cash' ? (
+                  <div className='order-card__payment'>$$ unpaid $$</div>
+                ) : (
+                  <div className='order-card__payment'>Paid</div>
+                )}
+              </Col>
               <Col className='text-right '>
                 {!order.touched && <div className='touch-dot'></div>}
                 {showStatus ? (

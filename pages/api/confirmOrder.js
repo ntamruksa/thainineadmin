@@ -28,7 +28,8 @@ export default async (req, res) => {
     // 1. complete the payment using paymentMethodId and totalInCents to create a payment intent with confirm=true
     try {
       let intent
-      if (order.paymentMethodId) {
+      // if paymentMethodId is 'cash' customer will pay at restaurant
+      if (order.paymentMethodId && order.paymentMethodId !== 'cash') {
         // Create the PaymentIntent
         console.log('paymentMethodId', order.paymentMethodId)
         intent = await stripe.paymentIntents.create({
@@ -49,9 +50,9 @@ export default async (req, res) => {
           {
             $set: addUpdateMeta({
               status: 'preparing',
-              paymentId: intent.id,
-              paymentStatus: intent.status,
-              paymentAmountInCents: intent.amount,
+              paymentId: intent ? intent.id : 'cash',
+              paymentStatus: intent ? intent.status : 'cash',
+              paymentAmountInCents: intent ? intent.amount : order.totalInCents,
             }),
           }
         )

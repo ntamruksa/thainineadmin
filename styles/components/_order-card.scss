@@ -18,4 +18,10 @@
 
 .order-card {
   color: $color-white;
+  &__payment {
+    text-transform: uppercase;
+    font-size: x-large;
+    font-weight: bold;
+    color: cyan;
+  }
 }

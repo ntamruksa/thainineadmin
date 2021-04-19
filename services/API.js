@@ -119,7 +119,7 @@ const switchItem = (itemId, available, reset, idToken) => {
 
 function untouchedOrdersQuery() {
   const untouchQuery = useQuery('getUntouchedCount', () => untouchedOrders(), {
-    refetchInterval: 60000,
+    refetchInterval: 10000,
   })
   // useQuery(['ordersQuery', 'open'], () => getOrders('open'), {
   //   enabled: untouchQuery.data?.count > 0,
