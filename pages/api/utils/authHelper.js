@@ -13,16 +13,22 @@ export async function isUserAdmin(authorization, db) {
   } catch (e) {
     console.warn(`Issue on firebase admin init: ${e.message}`)
   }
-  const decodedToken = await admin.auth().verifyIdToken(authorization)
-  const user = await db.collection('users').findOne(
-    findNotDeletedAndNotDisabled({
-      uid: decodedToken.user_id,
-      isAdminUser: true,
-    })
-  )
-  if (user) {
-    return true
-  } else {
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(authorization)
+    console.log('decodedToken', decodedToken)
+    const user = await db.collection('users').findOne(
+      findNotDeletedAndNotDisabled({
+        uid: decodedToken.user_id,
+        isAdminUser: true,
+      })
+    )
+    if (user) {
+      return true
+    } else {
+      return false
+    }
+  } catch (e) {
+    console.warn(`Issue on firebase decodedToken: ${e.message}`)
     return false
   }
 }
