@@ -50,7 +50,7 @@ const OrderCard = ({ order = null, showStatus = false, idTokenQuery }) => {
               </Col>
               <Col>
                 {order.paymentMethodId === 'cash' ? (
-                  <div className='order-card__payment'>$$ unpaid $$</div>
+                  <div className='order-card__payment order-card__payment__unpaid'>$$ unpaid $$</div>
                 ) : (
                   <div className='order-card__payment'>Paid</div>
                 )}

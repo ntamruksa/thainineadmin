@@ -23,5 +23,8 @@
     font-size: x-large;
     font-weight: bold;
     color: cyan;
+    &__unpaid {
+      color: purple;
+    }
   }
 }
