@@ -7,24 +7,26 @@ import {
   withAuthUserTokenSSR,
   AuthAction,
 } from 'next-firebase-auth'
-import { useQuery } from 'react-query'
+import { useQuery, useQueryClient } from 'react-query'
 import OrderCard from '../components/order/OrderCard'
 import api from '../services/API'
 
 const OrderIncoming = () => {
   const AuthUser = useAuthUser()
-
-  const idTokenQuery = useQuery(['idToken'], () => AuthUser.getIdToken(), {
+  const queryClient = useQueryClient()
+  const idTokenQuery = useQuery(['idToken'], async () => await AuthUser.getIdToken(), {
     enabled: !!AuthUser.id,
-    cacheTime: 5 * 60 * 1000,
   })
   const { data: orders, isLoading, isError, isIdle, error } = useQuery(
     ['ordersQuery', 'open'],
     () => api.getOrders('open', idTokenQuery.data),
     {
-      retry: 10,
+      retry: 3,
       enabled: idTokenQuery.data !== undefined,
-      refetchInterval: 60000,
+      onError: () => {
+        queryClient.invalidateQueries(['idToken'])
+      },
+      refetchInterval: 10000,
     }
   )
 
@@ -40,7 +42,7 @@ const OrderIncoming = () => {
   return (
     <section className='section section-main'>
       <Container>
-        {isIdle || isLoading ? (
+        {isIdle || isLoading || (isError && error.response && error.response.status === 401) ? (
           <>
             <Spinner animation='border' variant='primary' className='mr-2' />{' '}
             Loading ...
@@ -50,7 +52,7 @@ const OrderIncoming = () => {
         ) : (
           <>
             <div className='mb-4'>New Orders</div>
-            {orders.length > 0 ? (
+            {orders && orders.length > 0 ? (
               orders.map((order) => (
                 <OrderCard
                   key={order._id}
