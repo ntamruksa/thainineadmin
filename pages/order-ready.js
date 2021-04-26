@@ -33,6 +33,10 @@ const OrderReady = ({}) => {
           <div>{error.message}</div>
         ) : (
           <>
+            <h1 className='notification'>
+              ** CUSTOMER GET A FREE RICE FOR EVERY $35 SPENT **
+            </h1>
+
             <div className='mb-4'>Ready for Pick Up / Delivery</div>
             {orders.length > 0 ? (
               orders.map((order) => (

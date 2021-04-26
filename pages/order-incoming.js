@@ -14,9 +14,13 @@ import api from '../services/API'
 const OrderIncoming = () => {
   const AuthUser = useAuthUser()
   const queryClient = useQueryClient()
-  const idTokenQuery = useQuery(['idToken'], async () => await AuthUser.getIdToken(), {
-    enabled: !!AuthUser.id,
-  })
+  const idTokenQuery = useQuery(
+    ['idToken'],
+    async () => await AuthUser.getIdToken(),
+    {
+      enabled: !!AuthUser.id,
+    }
+  )
   const { data: orders, isLoading, isError, isIdle, error } = useQuery(
     ['ordersQuery', 'open'],
     () => api.getOrders('open', idTokenQuery.data),
@@ -42,7 +46,9 @@ const OrderIncoming = () => {
   return (
     <section className='section section-main'>
       <Container>
-        {isIdle || isLoading || (isError && error.response && error.response.status === 401) ? (
+        {isIdle ||
+        isLoading ||
+        (isError && error.response && error.response.status === 401) ? (
           <>
             <Spinner animation='border' variant='primary' className='mr-2' />{' '}
             Loading ...
@@ -51,6 +57,10 @@ const OrderIncoming = () => {
           <div>{error.message}</div>
         ) : (
           <>
+            <h1 className='notification'>
+              ** CUSTOMER GET A FREE RICE FOR EVERY $35 SPENT **
+            </h1>
+
             <div className='mb-4'>New Orders</div>
             {orders && orders.length > 0 ? (
               orders.map((order) => (
