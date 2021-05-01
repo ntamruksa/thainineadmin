@@ -76,14 +76,16 @@ function Sidebar(props) {
       refetchInterval: 3000,
       onSuccess: () => {
         if (data && data.count > 0) {
-          playIncoming()
+          if (!isPlaying) {
+            playIncoming()
+          }
         } else {
           stop()
         }
       },
     }
   )
-  const [playIncoming, { stop }] = useSound('/sounds/alert2.mp3', { volume: 2 })
+  const [playIncoming, { stop, isPlaying }] = useSound('/sounds/alert2.mp3', { volume: 2 })
 
   const drawer = (
     <div>
