@@ -73,30 +73,30 @@ function Sidebar(props) {
     () => api.untouchedOrders(),
     {
       retry: 10,
-      refetchInterval: 10000,
+      refetchInterval: 3000,
       onSuccess: () => {
         if (data && data.count > 0) {
           playIncoming()
+        } else {
+          stop()
         }
       },
     }
   )
-  const [playIncoming] = useSound('/sounds/alert.mp3', { volume: 1 })
+  const [playIncoming, { stop }] = useSound('/sounds/alert2.mp3', { volume: 2 })
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-      <ListItem button key='Setup' divider className='sidenav-item'>
+        <ListItem button key='Setup' divider className='sidenav-item'>
           <ListItemIcon>
             <Link href='/setup' passHref>
               <SettingsIcon
                 style={{ fontSize: 30 }}
                 className={`sidenav-item__icon ${
-                  router.pathname === '/setup'
-                    ? 'sidenav-item__selected'
-                    : ''
+                  router.pathname === '/setup' ? 'sidenav-item__selected' : ''
                 }`}
               />
             </Link>
@@ -191,7 +191,7 @@ function Sidebar(props) {
           <ListItem button key='Logout' divider className='sidenav-item'>
             <ListItemIcon>
               {/* <Link href='/signup' passHref> */}
-                <div onClick={()=> AuthUser.signOut()}>
+              <div onClick={() => AuthUser.signOut()}>
                 <LogoutIcon
                   style={{ fontSize: 30 }}
                   className={`sidenav-item__icon ${
@@ -200,7 +200,7 @@ function Sidebar(props) {
                       : ''
                   }`}
                 />
-                </div>
+              </div>
               {/* </Link> */}
             </ListItemIcon>
           </ListItem>
