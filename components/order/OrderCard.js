@@ -50,7 +50,9 @@ const OrderCard = ({ order = null, showStatus = false, idTokenQuery }) => {
               </Col>
               <Col>
                 {order.paymentMethodId === 'cash' ? (
-                  <div className='order-card__payment order-card__payment__unpaid'>$$ unpaid $$</div>
+                  <div className='order-card__payment order-card__payment__unpaid'>
+                    $unpaid$
+                  </div>
                 ) : (
                   <div className='order-card__payment'>Paid</div>
                 )}
@@ -60,25 +62,35 @@ const OrderCard = ({ order = null, showStatus = false, idTokenQuery }) => {
                 {showStatus ? (
                   <h3 className='order-card'>{order.status}</h3>
                 ) : order.option === 'delivery' ? (
-                  <h3 className='order-card'>
-                    Delivery Time: &nbsp;
-                    {order.deliveryTime &&
-                      moment(order.deliveryTime).format('hh:mm a')}{' '}
-                    {order.delayMins === '60'
-                      ? `(+1 hour)`
-                      : order.delayMins
-                      ? `(+${order.delayMins} mins)`
-                      : ''}
-                  </h3>
+                  <>
+                    <h3 className='order-card'>
+                      Delivery Time: &nbsp;
+                      {order.deliveryTime &&
+                        moment(order.deliveryTime).format('hh:mm a')}{' '}
+                      {order.delayMins === '60'
+                        ? `(+1 hour)`
+                        : order.delayMins
+                        ? `(+${order.delayMins} mins)`
+                        : ''}
+                    </h3>
+                    <h3 className='order-card'>
+                      {order.scheduled === true ? '(Scheduled)' : ''}
+                    </h3>
+                  </>
                 ) : (
-                  <h3 className='order-card'>
-                    Pickup Time: {order.pickupTime}{' '}
-                    {order.delayMins === '60'
-                      ? `(+1 hour)`
-                      : order.delayMins
-                      ? `(+${order.delayMins} mins)`
-                      : ''}
-                  </h3>
+                  <>
+                    <h3 className='order-card'>
+                      Pickup Time: {order.pickupTime}{' '}
+                      {order.delayMins === '60'
+                        ? `(+1 hour)`
+                        : order.delayMins
+                        ? `(+${order.delayMins} mins)`
+                        : ''}
+                    </h3>
+                    <h3 className='order-card'>
+                      {order.scheduled === true ? '(Scheduled)' : ''}
+                    </h3>
+                  </>
                 )}
               </Col>
             </Row>

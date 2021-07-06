@@ -131,7 +131,7 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
             </h1>
             {order.option === 'pickup' && (
               <h2 className='text-gray mb-0 px-4 menu-modal-subtitle'>
-                Pickup Time: {order.pickupTime}{' '}
+                Pickup Time: {order.pickupTime}{' '}{order.scheduled === true ? '(Scheduled)': ''}
                 {order.delayMins === '60'
                   ? '(+ Delay 1 hour)'
                   : order.delayMins
