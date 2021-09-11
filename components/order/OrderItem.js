@@ -23,7 +23,7 @@ const CartItem = ({ item }) => (
     <div>
       <h3 className='text-left '>{`${item.item.title}`}</h3>
       {item.option && <p className='text-left'>{item.option.title} {item.option.priceInCents > 0 ? `(${formatMoney(item.option.priceInCents)})` : ''}</p>}
-      {item.glutenFree && <p className='text-left'>
+      {item.glutenFree && <p className='text-left gluten'>
         Gluten Free ($1.00)
       </p>}
       {item.note && <p className='text-left'>
