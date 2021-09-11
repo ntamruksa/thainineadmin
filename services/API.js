@@ -80,8 +80,14 @@ function cancelOrder(orderId, idToken) {
 
 const confirmOrder = (orderId, idToken) => {
   const headers = getHeader(idToken)
-  return client.get(`/api/confirmOrder?orderId=${orderId}`, { headers })
+  return client.get(`/api/confirmOrder?orderId=${orderId}`, { headers }).then((res) => res.data)
 }
+
+const confirmOrderWithoutPay = (orderId, idToken) => {
+  const headers = getHeader(idToken)
+  return client.get(`/api/confirmOrderWithoutPay?orderId=${orderId}`, { headers }).then((res) => res.data)
+}
+
 
 const readyOrder = (orderId, idToken) => {
   const headers = getHeader(idToken)
@@ -189,6 +195,7 @@ export default {
   getOrders,
   cancelOrder,
   confirmOrder,
+  confirmOrderWithoutPay,
   readyOrder,
   pickupOrder,
   touchOrder,

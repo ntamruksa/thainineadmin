@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import api from '../../services/API'
 
 const MenuItem = ({ item = null, idTokenQuery }) => {
+  // const router = useRouter()
   const [loading, setLoading] = useState(false)
   const queryClient = useQueryClient()
   const { mutate: switchItem } = useMutation(
@@ -48,6 +49,13 @@ const MenuItem = ({ item = null, idTokenQuery }) => {
                 onClick={() => switchItem({ available: false, reset: true })}>
                 Set Sold Out Today
               </Button>
+              {/* <Button
+              className="btn-medium ml-2"
+              variant="outline-secondary"
+              onClick={() => router.push({
+                pathname: '/updateMenuitem',
+                query: { menuItemId: item._id}
+              })}>update</Button> */}
             </Col>
           ) : (
             <Button

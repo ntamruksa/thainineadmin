@@ -78,7 +78,7 @@ export default async (req, res) => {
     } catch (e) {
       // Display error on client
       console.error(e.message)
-      return res.send({ error: e.message })
+      res.status(400).json({ staus: 'payment error', error: e.message })
     }
   } else {
     res.status(401).json({ status: 'unauthorized' })

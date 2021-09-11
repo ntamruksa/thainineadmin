@@ -15,10 +15,12 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
   const [adjustItem, setAdjustItem] = useState(undefined)
   const [loading, setLoading] = useState(false)
   const [confirmCancel, setConfirmCancel] = useState(false)
+  const [paymentError, setPaymentError] = useState(false)
   const queryClient = useQueryClient()
   const handleClose = (e) => {
     // e.preventDefault()
     setConfirmCancel(false)
+    setPaymentError(false)
   }
   const handleShow = (e) => {
     e.preventDefault()
@@ -67,6 +69,24 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
         onHide()
         setLoading(false)
       },
+      onError: () => {
+        setPaymentError(true)
+        setLoading(false)
+      }
+    }
+  )
+
+  const { mutate: confirmOrderWithoutPay } = useMutation(
+    (id) => api.confirmOrderWithoutPay(id, idTokenQuery.data),
+    {
+      onMutate: () => {
+        setLoading(true)
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries(['ordersQuery', 'open'])
+        onHide()
+        setLoading(false)
+      }
     }
   )
 
@@ -101,6 +121,12 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
   return (
     <>
       <ConfirmMessageModal
+        message={'Payment error, contact customer to inform (this order will masked as unpaid)).'}
+        show={paymentError}
+        onHide={handleClose}
+        confirm={() => confirmOrderWithoutPay(order._id)}
+      />
+      <ConfirmMessageModal
         message={'Are you sure to cancel the order?'}
         show={confirmCancel}
         onHide={handleClose}
@@ -127,7 +153,8 @@ const OrderModal = ({ show, onHide, order, idTokenQuery }) => {
         <Modal.Body>
           <Form>
             <h1 className='text-capitalize p-4 menu-modal-title'>
-              {order.pickupName}
+              {order.pickupName}<br/>
+              #{order.orderNumber}
             </h1>
             {order.option === 'pickup' && (
               <h2 className='text-gray mb-0 px-4 menu-modal-subtitle'>
